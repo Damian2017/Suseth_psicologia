@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #666;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        .gallery-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .column {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .column h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .image-slot img, .video-slot img, .video-slot video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .image-slot {
+            width: 100%;
+            height: 800px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #888;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-slot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .video-slot {
+            width: 100%;
+            height: 800px;
+            background: linear-gradient(45deg, #e8f4fd, #d1ecf1);
+            border: 2px solid #4fc3f7;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-slot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #0277bd;
+        }
+
+        .media-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 6px 6px;
+        }
+
+        .video-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .video-btn:hover {
+            background: #5a67d8;
+            transform: scale(1.05);
+        }
+
+        .video-btn:active {
+            transform: scale(0.95);
+        }
+
+        .placeholder-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #888;
+            font-size: 1rem;
+        }
+
+        .placeholder-text::before {
+            content: '📷';
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .video-placeholder::before {
+            content: '🎥';
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .video-slot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #0277bd;
+        }
+
+        .video-slot::before {
+            content: '🎥';
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .upload-text {
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Mi Portfolio Creativo</h1>
+            <h2 class="subtitle">Galería de Proyectos e Ideas</h2>
+            <div class="description">
+                Bienvenido a mi espacio digital donde comparto mis trabajos más significativos y creativos.
+                Esta galería representa una colección cuidadosamente seleccionada de proyectos que reflejan
+                mi pasión por el diseño, la innovación y la creatividad. Cada pieza aquí presente cuenta una
+                historia única y demuestra mi evolución como profesional. A través de estas imágenes y videos,
+                podrás explorar diferentes aspectos de mi trabajo, desde conceptos iniciales hasta realizaciones
+                finales. Mi objetivo es inspirar y conectar con personas que compartan intereses similares.
+                Esta plataforma sirve como punto de encuentro entre mis ideas y tu curiosidad. Cada proyecto
+                ha sido desarrollado con dedicación y atención al detalle. Te invito a explorar libremente
+                este contenido y descubrir las historias detrás de cada creación.
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <div class="column">
+                <h3>Galería de Imágenes</h3>
+                <div class="image-slot">
+                    <img src="images/1.jpeg" alt="Descripción imagen 1" />
+                </div>
+                <div class="image-slot">
+                    <img src="images/2.jpeg" alt="Descripción imagen 2" />
+                </div>
+                <div class="image-slot">
+                    <img src="images/3.jpeg" alt="Descripción imagen 3" />
+                </div>
+                <div class="image-slot">
+                    <img src="images/4.jpeg" alt="Descripción imagen 4" />
+                </div>
+                <div class="image-slot">
+                    <img src="images/imagen5.jpg" alt="Descripción imagen 5" />
+                </div>
+            </div>
+
+            <div class="column">
+                <h3>Galería Multimedia</h3>
+                <div class="video-slot">
+                    <video src="images/video1.mp4" controls preload="metadata">
+                        Tu navegador no soporta videos HTML5.
+                    </video>
+                </div>
+                <div class="video-slot">
+                    <img src="images/video2.jpg" alt="Video thumbnail 2" />
+                    <!-- O para video: <video src="videos/video2.mp4" controls></video> -->
+                </div>
+                <div class="video-slot">
+                    <img src="images/video3.jpg" alt="Video thumbnail 3" />
+                    <!-- O para video: <video src="videos/video3.mp4" controls></video> -->
+                </div>
+                <div class="video-slot">
+                    <img src="images/video4.jpg" alt="Video thumbnail 4" />
+                    <!-- O para video: <video src="videos/video4.mp4" controls></video> -->
+                </div>
+                <div class="video-slot">
+                    <img src="images/video5.jpg" alt="Video thumbnail 5" />
+                    <!-- O para video: <video src="videos/video5.mp4" controls></video> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Mi Portfolio Digital. Diseñado con pasión y creatividad.</p>
+        </div>
+    </div>
+
+    <script>
+        // Función para detectar automáticamente el tipo de archivo y cargarlo
+        function loadMediaFiles() {
+            // NO cargar imágenes automáticamente en la primera columna
+            // ya que están definidas directamente en el HTML
+
+            // Solo cargar archivos multimedia en la segunda columna
+            const videoSlots = document.querySelectorAll('.video-slot');
+
+            videoSlots.forEach((slot, index) => {
+                const src = slot.getAttribute('data-src');
+                if (src) {
+                    loadMediaFile(slot, src, index + 1);
+                }
+            });
+        }
+
+        function loadImage(container, src, alt) {
+            const img = new Image();
+            img.onload = function() {
+                container.innerHTML = `<img src="${src}" alt="${alt}" />`;
+            };
+            img.onerror = function() {
+                container.innerHTML = `<div class="placeholder-text">❌ Error al cargar: ${src}</div>`;
+            };
+            img.src = src;
+        }
+
+        function loadMediaFile(container, src, index) {
+            const extension = src.split('.').pop().toLowerCase();
+            const mediaContainer = container.querySelector('.media-container');
+
+            if (['mp4', 'webm', 'ogg', 'avi', 'mov'].includes(extension)) {
+                // Es un video
+                loadVideo(container, src, index);
+            } else if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(extension)) {
+                // Es una imagen
+                loadImageInVideoSlot(container, src, index);
+            } else {
+                // Tipo de archivo no reconocido
+                mediaContainer.innerHTML = `<div class="placeholder-text video-placeholder">❓ Tipo de archivo no soportado: ${extension}</div>`;
+            }
+        }
+
+        function loadVideo(container, src, index) {
+            const video = document.createElement('video');
+            const mediaContainer = container.querySelector('.media-container');
+
+            video.src = src;
+            video.preload = 'metadata';
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.objectFit = 'cover';
+            video.style.borderRadius = '6px';
+
+            video.onloadedmetadata = function() {
+                mediaContainer.innerHTML = '';
+                mediaContainer.appendChild(video);
+
+                // Agregar controles personalizados
+                const controlsDiv = document.createElement('div');
+                controlsDiv.className = 'video-controls';
+                controlsDiv.innerHTML = `
+                    <button class="video-btn" onclick="playVideo(this)">▶️ Play</button>
+                    <button class="video-btn" onclick="pauseVideo(this)">⏸️ Pause</button>
+                    <button class="video-btn" onclick="stopVideo(this)">⏹️ Stop</button>
+                    <button class="video-btn" onclick="resetVideo(this)">🔄 Reset</button>
+                `;
+                container.appendChild(controlsDiv);
+            };
+
+            video.onerror = function() {
+                mediaContainer.innerHTML = `<div class="placeholder-text video-placeholder">❌ Error al cargar video: ${src}</div>`;
+            };
+        }
+
+        function loadImageInVideoSlot(container, src, index) {
+            const img = new Image();
+            const mediaContainer = container.querySelector('.media-container');
+
+            img.onload = function() {
+                mediaContainer.innerHTML = `<img src="${src}" alt="Imagen ${index}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;" />`;
+            };
+
+            img.onerror = function() {
+                mediaContainer.innerHTML = `<div class="placeholder-text video-placeholder">❌ Error al cargar imagen: ${src}</div>`;
+            };
+
+            img.src = src;
+        }
+
+        // Funciones de control de video
+        function playVideo(button) {
+            const video = button.closest('.video-slot').querySelector('video');
+            if (video) {
+                video.play();
+            }
+        }
+
+        function pauseVideo(button) {
+            const video = button.closest('.video-slot').querySelector('video');
+            if (video) {
+                video.pause();
+            }
+        }
+
+        function stopVideo(button) {
+            const video = button.closest('.video-slot').querySelector('video');
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+            }
+        }
+
+        function resetVideo(button) {
+            const video = button.closest('.video-slot').querySelector('video');
+            if (video) {
+                video.currentTime = 0;
+                video.pause();
+            }
+        }
+
+        // Cargar archivos cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', loadMediaFiles);
+    </script>
+</body>
+</html>
